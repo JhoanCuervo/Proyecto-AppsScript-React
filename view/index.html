@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('view/helpers/cdn') ?>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <div style="display: none;">
+  <!-- componentes -->
+  <?!= include('view/helpers/constantes') ?>
+  <?!= include('view/componentes/Componente') ?>
+  <!-- componente App -->
+  <?!= include('view/app')?>
+</div>
+</html>
