@@ -1,0 +1,48 @@
+//<script type="text/jsx">
+function FormularioRegistro(){
+    const guardarFormulario = (datosFormuario) => {
+        google.script.run.withSuccessHandler(res=>{
+            console.log(res);
+        }).insertUsers(datosFormuario);
+        console.log(datosFormuario);
+    }
+
+
+    return <div className='px-20'>
+        <h2 className='text-center font-bold text-xl my-6'>Formulario de Registro</h2>
+        <Form layout='vertical' onFinish={guardarFormulario}>
+            <Item 
+                name='nombreCompleto' 
+                label='Nombre Completo' 
+                rules={[
+                    {required:true, message:'El campo de Nombre Completo es requerido'}
+                ]}
+            >
+                <Input/>
+            </Item>
+            <Item 
+                name='correo' 
+                label='Correo Electronico' 
+                rules={[
+                    {type:'email', message:'El formato no coincide con el de un correo valido'},
+                    {required:true, message:'El campo de correo es requerido'}
+                ]}
+            >
+                <Input/>
+            </Item>
+            <Item 
+                name='contrasena' 
+                label='Contraseña'
+                rules={[
+                    {required:true, message:'El campo de Contraseña es requerido'}
+                ]}
+            >
+                <Password/>
+            </Item>
+            <Item className='text-center'>
+                <Button htmlType='submit'>Guardar</Button>
+            </Item>
+        </Form>
+    </div>;
+}
+//</script>
