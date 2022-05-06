@@ -1,11 +1,32 @@
-function insertUsers(dataUsers){
-    console.log(dataUsers);
+function insertUsers(id, dataUsers){
     try{
         const inputs = "Id, NombreCompleto, Correo, Contrasena";
-        const values = `"1", "${dataUsers['nombreCompleto']}", "${dataUsers['correo']}", "${dataUsers['contrasena']}"`;
-        return insertData(env_().ID_TABLEUSERS, inputs, values);
+        const values = `"${id}", "${dataUsers['nombreCompleto']}", "${dataUsers['correo']}", "${dataUsers['contrasena']}"`;
+        var idInsert = insertData_(env_().ID_TABLEUSERS, inputs, values);
+        return {
+            "id"            : idInsert,
+            "title"         : "Registro Exitoso",
+            "description"   : "Ya se encuentra registrado el usuario en la base de datos."
+        };
     }catch(e){
-        return e;
+        return {
+            "id"            : "",
+            "title"         : "Ops ha ocurrido un error!" + e,
+            "description"   : "Por favor contacte a soporte."
+        };
     }
     
+}
+
+function queryUsers(){
+    try{
+        var idInsert = queryData_(env_().ID_TABLEUSERS);
+        return idInsert
+    }catch(e){
+        return {
+            "id"            : "",
+            "title"         : "Ops ha ocurrido un error!" + e,
+            "description"   : "Por favor contacte a soporte."
+        };
+    }
 }

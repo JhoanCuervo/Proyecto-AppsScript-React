@@ -1,16 +1,21 @@
 //<script type="text/jsx">
 function FormularioRegistro(){
+
+    const [form] = Form.useForm(); 
+
     const guardarFormulario = (datosFormuario) => {
+        notificationSave("Guardando Usuario");
         google.script.run.withSuccessHandler(res=>{
-            console.log(res);
-        }).insertUsers(datosFormuario);
+            notification(res.title, res.description);
+            form.resetFields();
+        }).insertUsers(v4(), datosFormuario);
         console.log(datosFormuario);
     }
 
 
     return <div className='px-20'>
         <h2 className='text-center font-bold text-xl my-6'>Formulario de Registro</h2>
-        <Form layout='vertical' onFinish={guardarFormulario}>
+        <Form form={form} layout='vertical' onFinish={guardarFormulario}>
             <Item 
                 name='nombreCompleto' 
                 label='Nombre Completo' 

@@ -1,0 +1,14 @@
+//<script type="text/jsx">
+function Users(){
+    useEffect(listUSers,[])
+
+    function listUSers(){
+        notificationSave("Cargando usuarios");
+        google.script.run.withSuccessHandler(res=>{
+            console.log(res);
+        }).queryUsers();
+    }
+
+    return <div>hola</div>;
+}
+//</script>
